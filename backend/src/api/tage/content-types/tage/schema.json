@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tages",
+  "info": {
+    "singularName": "tage",
+    "pluralName": "tages",
+    "displayName": "Tage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Ueberschrift": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "Tage": {
+      "type": "date",
+      "required": true
+    },
+    "Beschreibung": {
+      "type": "blocks"
+    },
+    "TagBis": {
+      "type": "date"
+    },
+    "Bilder": {
+      "type": "dynamiczone",
+      "components": [
+        "shared.media",
+        "shared.bilder-mit-text"
+      ]
+    }
+  }
+}
