@@ -1,5 +1,5 @@
 # website-backend
-Das Backend wird mit Strapi genutzt
+Das Backend wird mit Strapi genutzt. Die Datenbank ist Sqlite.
 
 Admin: 
     Mail: neuseeland1@web.de

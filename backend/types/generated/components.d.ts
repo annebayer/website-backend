@@ -1,27 +1,57 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface SharedAusfluege extends Struct.ComponentSchema {
+  collectionName: 'components_shared_ausflueges';
+  info: {
+    displayName: 'Ausfluege';
+  };
+  attributes: {
+    Bilder: Schema.Attribute.Component<'shared.bilder-mit-text', true>;
+    description: Schema.Attribute.RichText;
+    tip: Schema.Attribute.Component<'shared.tip', false>;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SharedBilderMitText extends Struct.ComponentSchema {
   collectionName: 'components_shared_bilder_mit_texts';
   info: {
     displayName: 'Bilder mit Text';
   };
   attributes: {
+    Beschreibung: Schema.Attribute.String;
     Bilder: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
-    >;
+    > &
+      Schema.Attribute.Required;
   };
 }
 
-export interface SharedMedia extends Struct.ComponentSchema {
-  collectionName: 'components_shared_media';
+export interface SharedMap extends Struct.ComponentSchema {
+  collectionName: 'components_shared_maps';
   info: {
-    displayName: 'Media';
-    icon: 'file-video';
+    displayName: 'MapOrt';
   };
   attributes: {
-    Beschreibung: Schema.Attribute.Text;
-    file: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
+    hoverTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    Length: Schema.Attribute.BigInteger & Schema.Attribute.Required;
+    Sign: Schema.Attribute.Component<'shared.map-sign', false> &
+      Schema.Attribute.Required;
+    tages: Schema.Attribute.Relation<'oneToMany', 'api::tage.tage'>;
+    Width: Schema.Attribute.BigInteger & Schema.Attribute.Required;
+  };
+}
+
+export interface SharedMapSign extends Struct.ComponentSchema {
+  collectionName: 'components_shared_map_signs';
+  info: {
+    displayName: 'MapSign';
+  };
+  attributes: {
+    Art: Schema.Attribute.Enumeration<
+      ['Wandern', 'Sehensw\u00FCrdigkeit', 'Essen', 'Parken']
+    >;
   };
 }
 
@@ -34,18 +64,6 @@ export interface SharedQuote extends Struct.ComponentSchema {
   attributes: {
     body: Schema.Attribute.Text;
     title: Schema.Attribute.String;
-  };
-}
-
-export interface SharedRichText extends Struct.ComponentSchema {
-  collectionName: 'components_shared_rich_texts';
-  info: {
-    description: '';
-    displayName: 'Rich text';
-    icon: 'align-justify';
-  };
-  attributes: {
-    body: Schema.Attribute.RichText;
   };
 }
 
@@ -64,27 +82,30 @@ export interface SharedSeo extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedSlider extends Struct.ComponentSchema {
-  collectionName: 'components_shared_sliders';
+export interface SharedTip extends Struct.ComponentSchema {
+  collectionName: 'components_shared_tips';
   info: {
-    description: '';
-    displayName: 'Slider';
-    icon: 'address-book';
+    displayName: 'Tip';
   };
   attributes: {
-    files: Schema.Attribute.Media<'images', true>;
+    Bild: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    Icon: Schema.Attribute.Enumeration<
+      ['Ausrufezeichen', 'Fragezeichen', 'Smiley']
+    >;
+    Text: Schema.Attribute.Text & Schema.Attribute.Required;
   };
 }
 
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'shared.ausfluege': SharedAusfluege;
       'shared.bilder-mit-text': SharedBilderMitText;
-      'shared.media': SharedMedia;
+      'shared.map': SharedMap;
+      'shared.map-sign': SharedMapSign;
       'shared.quote': SharedQuote;
-      'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
-      'shared.slider': SharedSlider;
+      'shared.tip': SharedTip;
     }
   }
 }

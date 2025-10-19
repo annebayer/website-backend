@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_shared_maps",
+  "info": {
+    "displayName": "MapOrt"
+  },
+  "options": {},
+  "attributes": {
+    "tages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tage.tage"
+    },
+    "hoverTitle": {
+      "type": "string",
+      "required": true
+    },
+    "Width": {
+      "type": "biginteger",
+      "required": true
+    },
+    "Length": {
+      "type": "biginteger",
+      "required": true
+    },
+    "Sign": {
+      "type": "component",
+      "component": "shared.map-sign",
+      "repeatable": false,
+      "required": true
+    }
+  },
+  "config": {}
+}

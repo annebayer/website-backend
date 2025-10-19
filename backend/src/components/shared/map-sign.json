@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_map_signs",
+  "info": {
+    "displayName": "MapSign"
+  },
+  "options": {},
+  "attributes": {
+    "Art": {
+      "type": "enumeration",
+      "enum": [
+        "Wandern",
+        "Sehenswürdigkeit",
+        "Essen",
+        "Parken"
+      ]
+    }
+  },
+  "config": {}
+}

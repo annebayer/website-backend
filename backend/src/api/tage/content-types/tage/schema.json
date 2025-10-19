@@ -11,26 +11,40 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Ueberschrift": {
+    "title": {
       "type": "string",
       "required": true,
       "unique": true
     },
-    "Tage": {
+    "dateFrom": {
       "type": "date",
       "required": true
     },
-    "Beschreibung": {
-      "type": "blocks"
-    },
-    "TagBis": {
+    "dateTo": {
       "type": "date"
     },
-    "Bilder": {
+    "TeaserBild": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "descriptionShort": {
+      "type": "text"
+    },
+    "Highlights": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "pictures": {
       "type": "dynamiczone",
       "components": [
-        "shared.media",
-        "shared.bilder-mit-text"
+        "shared.bilder-mit-text",
+        "shared.tip",
+        "shared.ausfluege"
       ]
     }
   }

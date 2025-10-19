@@ -8,12 +8,16 @@
     "Bilder": {
       "type": "media",
       "multiple": true,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
       ]
+    },
+    "Beschreibung": {
+      "type": "string"
     }
   },
   "config": {}

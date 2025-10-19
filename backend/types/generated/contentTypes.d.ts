@@ -479,9 +479,7 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    blocks: Schema.Attribute.DynamicZone<
-      ['shared.media', 'shared.quote', 'shared.rich-text', 'shared.slider']
-    >;
+    blocks: Schema.Attribute.DynamicZone<['shared.quote']>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -509,9 +507,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   };
   attributes: {
     author: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
-    blocks: Schema.Attribute.DynamicZone<
-      ['shared.media', 'shared.quote', 'shared.rich-text', 'shared.slider']
-    >;
+    blocks: Schema.Attribute.DynamicZone<['shared.quote']>;
     category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
     cover: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
     createdAt: Schema.Attribute.DateTime;
@@ -632,6 +628,31 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiMapMap extends Struct.SingleTypeSchema {
+  collectionName: 'maps';
+  info: {
+    displayName: 'Map';
+    pluralName: 'maps';
+    singularName: 'map';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::map.map'> &
+      Schema.Attribute.Private;
+    orte: Schema.Attribute.DynamicZone<['shared.map']>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiTageTage extends Struct.CollectionTypeSchema {
   collectionName: 'tages';
   info: {
@@ -643,20 +664,23 @@ export interface ApiTageTage extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    Beschreibung: Schema.Attribute.Blocks;
-    Bilder: Schema.Attribute.DynamicZone<
-      ['shared.media', 'shared.bilder-mit-text']
-    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    dateFrom: Schema.Attribute.Date & Schema.Attribute.Required;
+    dateTo: Schema.Attribute.Date;
+    description: Schema.Attribute.Blocks;
+    descriptionShort: Schema.Attribute.Text;
+    Highlights: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::tage.tage'> &
       Schema.Attribute.Private;
+    pictures: Schema.Attribute.DynamicZone<
+      ['shared.bilder-mit-text', 'shared.tip', 'shared.ausfluege']
+    >;
     publishedAt: Schema.Attribute.DateTime;
-    TagBis: Schema.Attribute.Date;
-    Tage: Schema.Attribute.Date & Schema.Attribute.Required;
-    Ueberschrift: Schema.Attribute.String &
+    TeaserBild: Schema.Attribute.Media<'images'>;
+    title: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
     updatedAt: Schema.Attribute.DateTime;
@@ -1181,6 +1205,7 @@ declare module '@strapi/strapi' {
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
       'api::global.global': ApiGlobalGlobal;
+      'api::map.map': ApiMapMap;
       'api::tage.tage': ApiTageTage;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

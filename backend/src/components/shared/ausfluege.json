@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_shared_ausflueges",
+  "info": {
+    "displayName": "Ausfluege"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "Bilder": {
+      "type": "component",
+      "component": "shared.bilder-mit-text",
+      "repeatable": true
+    },
+    "tip": {
+      "type": "component",
+      "component": "shared.tip",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}
