@@ -42,7 +42,6 @@
     "pictures": {
       "type": "dynamiczone",
       "components": [
-        "shared.bilder-mit-text",
         "shared.tip",
         "shared.ausfluege"
       ]

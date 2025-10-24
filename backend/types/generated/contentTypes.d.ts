@@ -675,9 +675,7 @@ export interface ApiTageTage extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::tage.tage'> &
       Schema.Attribute.Private;
-    pictures: Schema.Attribute.DynamicZone<
-      ['shared.bilder-mit-text', 'shared.tip', 'shared.ausfluege']
-    >;
+    pictures: Schema.Attribute.DynamicZone<['shared.tip', 'shared.ausfluege']>;
     publishedAt: Schema.Attribute.DateTime;
     TeaserBild: Schema.Attribute.Media<'images'>;
     title: Schema.Attribute.String &
