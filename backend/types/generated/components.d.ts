@@ -35,11 +35,34 @@ export interface SharedMap extends Struct.ComponentSchema {
   };
   attributes: {
     hoverTitle: Schema.Attribute.String & Schema.Attribute.Required;
-    Length: Schema.Attribute.BigInteger & Schema.Attribute.Required;
+    Koordinate: Schema.Attribute.Component<'shared.map-koordinaten', false>;
     Sign: Schema.Attribute.Component<'shared.map-sign', false> &
       Schema.Attribute.Required;
     tages: Schema.Attribute.Relation<'oneToMany', 'api::tage.tage'>;
-    Width: Schema.Attribute.BigInteger & Schema.Attribute.Required;
+  };
+}
+
+export interface SharedMapKoordinaten extends Struct.ComponentSchema {
+  collectionName: 'components_shared_map_koordinatens';
+  info: {
+    displayName: 'MapKoordinaten';
+  };
+  attributes: {
+    x: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    y: Schema.Attribute.Decimal & Schema.Attribute.Required;
+  };
+}
+
+export interface SharedMapRoute extends Struct.ComponentSchema {
+  collectionName: 'components_shared_map_routes';
+  info: {
+    displayName: 'MapRoute';
+  };
+  attributes: {
+    Koordinaten: Schema.Attribute.Component<'shared.map-koordinaten', true>;
+    MapRouteArt: Schema.Attribute.Component<'shared.map-strichart', false>;
+    Nach: Schema.Attribute.String;
+    Von: Schema.Attribute.String;
   };
 }
 
@@ -50,7 +73,19 @@ export interface SharedMapSign extends Struct.ComponentSchema {
   };
   attributes: {
     Art: Schema.Attribute.Enumeration<
-      ['Wandern', 'Sehensw\u00FCrdigkeit', 'Essen', 'Parken']
+      ['Wandern', 'Sehensw\u00FCrdigkeit', 'Essen', 'Parken', 'Hobbit']
+    >;
+  };
+}
+
+export interface SharedMapStrichart extends Struct.ComponentSchema {
+  collectionName: 'components_shared_map_stricharts';
+  info: {
+    displayName: 'MapStrichart';
+  };
+  attributes: {
+    Art: Schema.Attribute.Enumeration<
+      ['Gestrichelt', 'Durchgezogen', 'Gepunktet']
     >;
   };
 }
@@ -102,7 +137,10 @@ declare module '@strapi/strapi' {
       'shared.ausfluege': SharedAusfluege;
       'shared.bilder-mit-text': SharedBilderMitText;
       'shared.map': SharedMap;
+      'shared.map-koordinaten': SharedMapKoordinaten;
+      'shared.map-route': SharedMapRoute;MapRouteArt
       'shared.map-sign': SharedMapSign;
+      'shared.map-strichart': SharedMapStrichart;
       'shared.quote': SharedQuote;
       'shared.seo': SharedSeo;
       'shared.tip': SharedTip;

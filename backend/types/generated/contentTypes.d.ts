@@ -628,12 +628,12 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiMapMap extends Struct.SingleTypeSchema {
-  collectionName: 'maps';
+export interface ApiKarteKarte extends Struct.SingleTypeSchema {
+  collectionName: 'kartes';
   info: {
-    displayName: 'Map';
-    pluralName: 'maps';
-    singularName: 'map';
+    displayName: 'Karte';
+    pluralName: 'kartes';
+    singularName: 'karte';
   };
   options: {
     draftAndPublish: true;
@@ -643,9 +643,9 @@ export interface ApiMapMap extends Struct.SingleTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::map.map'> &
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::karte.karte'> &
       Schema.Attribute.Private;
-    orte: Schema.Attribute.DynamicZone<['shared.map']>;
+    Orte: Schema.Attribute.DynamicZone<['shared.map', 'shared.map-route']>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1203,7 +1203,7 @@ declare module '@strapi/strapi' {
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
       'api::global.global': ApiGlobalGlobal;
-      'api::map.map': ApiMapMap;
+      'api::karte.karte': ApiKarteKarte;
       'api::tage.tage': ApiTageTage;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

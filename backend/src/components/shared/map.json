@@ -14,13 +14,10 @@
       "type": "string",
       "required": true
     },
-    "Width": {
-      "type": "biginteger",
-      "required": true
-    },
-    "Length": {
-      "type": "biginteger",
-      "required": true
+    "Koordinate": {
+      "type": "component",
+      "component": "shared.map-koordinaten",
+      "repeatable": false
     },
     "Sign": {
       "type": "component",
