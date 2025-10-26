@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_map_stricharts",
+  "info": {
+    "displayName": "MapStrichart"
+  },
+  "options": {},
+  "attributes": {
+    "Art": {
+      "type": "enumeration",
+      "enum": [
+        "Gestrichelt",
+        "Durchgezogen",
+        "Gepunktet"
+      ]
+    }
+  },
+  "config": {}
+}

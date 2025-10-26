@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_shared_map_routes",
+  "info": {
+    "displayName": "MapRoute"
+  },
+  "options": {},
+  "attributes": {
+    "Von": {
+      "type": "string"
+    },
+    "Nach": {
+      "type": "string"
+    },
+    "Koordinaten": {
+      "type": "component",
+      "component": "shared.map-koordinaten",
+      "repeatable": true
+    },
+    "MapRouteArt": {
+      "type": "component",
+      "component": "shared.map-strichart",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

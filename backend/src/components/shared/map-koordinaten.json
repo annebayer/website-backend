@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_map_koordinatens",
+  "info": {
+    "displayName": "MapKoordinaten"
+  },
+  "options": {},
+  "attributes": {
+    "x": {
+      "type": "decimal",
+      "required": true
+    },
+    "y": {
+      "type": "decimal",
+      "required": true
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,22 @@
+{
+  "kind": "singleType",
+  "collectionName": "kartes",
+  "info": {
+    "singularName": "karte",
+    "pluralName": "kartes",
+    "displayName": "Karte"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Orte": {
+      "type": "dynamiczone",
+      "components": [
+        "shared.map",
+        "shared.map-route"
+      ]
+    }
+  }
+}
