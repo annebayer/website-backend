@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_shared_frage_antwort_s",
+  "info": {
+    "displayName": "Frage Antwort "
+  },
+  "options": {},
+  "attributes": {
+    "Frage": {
+      "type": "string",
+      "required": true
+    },
+    "Antwort": {
+      "type": "string",
+      "required": true
+    },
+    "FrageBild": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "AntwortLang": {
+      "type": "text"
+    },
+    "AntwortBild": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

@@ -43,7 +43,8 @@
       "type": "dynamiczone",
       "components": [
         "shared.tip",
-        "shared.ausfluege"
+        "shared.ausfluege",
+        "shared.frage-antwort"
       ]
     }
   }

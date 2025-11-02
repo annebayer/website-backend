@@ -28,6 +28,22 @@ export interface SharedBilderMitText extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedFrageAntwort extends Struct.ComponentSchema {
+  collectionName: 'components_shared_frage_antwort_s';
+  info: {
+    displayName: 'Frage Antwort ';
+  };
+  attributes: {
+    Antwort: Schema.Attribute.String & Schema.Attribute.Required;
+    AntwortBild: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    AntwortLang: Schema.Attribute.Text;
+    Frage: Schema.Attribute.String & Schema.Attribute.Required;
+    FrageBild: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+  };
+}
+
 export interface SharedMap extends Struct.ComponentSchema {
   collectionName: 'components_shared_maps';
   info: {
@@ -136,9 +152,10 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'shared.ausfluege': SharedAusfluege;
       'shared.bilder-mit-text': SharedBilderMitText;
+      'shared.frage-antwort': SharedFrageAntwort;
       'shared.map': SharedMap;
       'shared.map-koordinaten': SharedMapKoordinaten;
-      'shared.map-route': SharedMapRoute;MapRouteArt
+      'shared.map-route': SharedMapRoute;
       'shared.map-sign': SharedMapSign;
       'shared.map-strichart': SharedMapStrichart;
       'shared.quote': SharedQuote;
