@@ -106,33 +106,6 @@ export interface SharedMapStrichart extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedQuote extends Struct.ComponentSchema {
-  collectionName: 'components_shared_quotes';
-  info: {
-    displayName: 'Quote';
-    icon: 'indent';
-  };
-  attributes: {
-    body: Schema.Attribute.Text;
-    title: Schema.Attribute.String;
-  };
-}
-
-export interface SharedSeo extends Struct.ComponentSchema {
-  collectionName: 'components_shared_seos';
-  info: {
-    description: '';
-    displayName: 'Seo';
-    icon: 'allergies';
-    name: 'Seo';
-  };
-  attributes: {
-    metaDescription: Schema.Attribute.Text & Schema.Attribute.Required;
-    metaTitle: Schema.Attribute.String & Schema.Attribute.Required;
-    shareImage: Schema.Attribute.Media<'images'>;
-  };
-}
-
 export interface SharedTip extends Struct.ComponentSchema {
   collectionName: 'components_shared_tips';
   info: {
@@ -158,8 +131,6 @@ declare module '@strapi/strapi' {
       'shared.map-route': SharedMapRoute;
       'shared.map-sign': SharedMapSign;
       'shared.map-strichart': SharedMapStrichart;
-      'shared.quote': SharedQuote;
-      'shared.seo': SharedSeo;
       'shared.tip': SharedTip;
     }
   }
