@@ -64,8 +64,9 @@ export interface SharedMapKoordinaten extends Struct.ComponentSchema {
     displayName: 'MapKoordinaten';
   };
   attributes: {
-    x: Schema.Attribute.Decimal & Schema.Attribute.Required;
-    y: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    KoordinatenZusammen: Schema.Attribute.String;
+    x: Schema.Attribute.Decimal;
+    y: Schema.Attribute.Decimal;
   };
 }
 

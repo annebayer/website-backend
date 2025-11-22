@@ -7,11 +7,14 @@
   "attributes": {
     "x": {
       "type": "decimal",
-      "required": true
+      "required": false
     },
     "y": {
       "type": "decimal",
-      "required": true
+      "required": false
+    },
+    "KoordinatenZusammen": {
+      "type": "string"
     }
   },
   "config": {}
