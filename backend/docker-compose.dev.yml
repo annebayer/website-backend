@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  strapi-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      DATABASE_CLIENT: sqlite
+      DATABASE_FILENAME: .tmp/data.db
+      JWT_SECRET: ${JWT_SECRET}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      APP_KEYS: ${APP_KEYS}
+      API_TOKEN_SALT: ${API_TOKEN_SALT}
+      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT}
+    volumes:
+      - .:/opt/app
+      - /opt/app/node_modules
+      - strapi-data-dev:/opt/app/.tmp
+    ports:
+      - '1338:1337'
+
+volumes:
+  strapi-data-dev:

@@ -1,0 +1,10 @@
+node_modules
+npm-debug.log
+.tmp
+.cache
+dist
+build
+.git
+.env
+*.md
+.DS_Store
