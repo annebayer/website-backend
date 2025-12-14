@@ -1,35 +1,36 @@
-# Dockerfile
-FROM node:20-alpine
+# Build Stage
+FROM node:20-alpine AS builder
 
-# Arbeitsverzeichnis
 WORKDIR /opt/app
 
-# System-Dependencies
 RUN apk update && apk add --no-cache \
-    build-base \
-    gcc \
-    autoconf \
-    automake \
-    zlib-dev \
-    libpng-dev \
-    vips-dev \
-    git
+    build-base gcc autoconf automake zlib-dev \
+    libpng-dev vips-dev git
 
-# Package files kopieren
 COPY package*.json ./
+RUN npm ci --only=production
 
-# Dependencies installieren
-RUN npm ci
-
-# App-Code kopieren
 COPY . .
-
-# Strapi Build
-ENV NODE_ENV=production
 RUN npm run build
 
-# Port freigeben
+# Production Stage
+FROM node:20-alpine
+
+WORKDIR /opt/app
+
+RUN apk add --no-cache vips-dev
+
+# Copy built files from builder
+COPY --from=builder /opt/app/node_modules ./node_modules
+COPY --from=builder /opt/app/dist ./dist
+COPY --from=builder /opt/app/public ./public
+COPY --from=builder /opt/app/package*.json ./
+COPY --from=builder /opt/app/.strapi ./.strapi
+
+ENV NODE_ENV=production
+ENV HOST=0.0.0.0
+ENV PORT=1337
+
 EXPOSE 1337
 
-# Start-Command
 CMD ["npm", "run", "start"]
