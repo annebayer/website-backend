@@ -9,7 +9,7 @@ build/
 .git/
 .vscode/
 dist/
-.tmp/
+../.tmp/
 
 ############################
 # OS X
@@ -78,7 +78,7 @@ $RECYCLE.BIN/
 # Logs and databases
 ############################
 
-.tmp
+../.tmp
 *.log
 *.sql
 *.sqlite
