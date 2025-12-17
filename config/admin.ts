@@ -10,14 +10,11 @@ export default ({ env }) => ({
       salt: env('TRANSFER_TOKEN_SALT'),
     },
   },
-  secrets: {
-    encryptionKey: env('ENCRYPTION_KEY'),
-  },
   flags: {
     nps: env.bool('FLAG_NPS', true),
     promoteEE: env.bool('FLAG_PROMOTE_EE', true),
   },
   cookies: {
-      secure: env('NODE_ENV', 'development') === 'production',
-    },
+    secure: env.bool('ADMIN_COOKIE_SECURE', false),
+  },
 });
