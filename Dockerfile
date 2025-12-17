@@ -8,7 +8,7 @@ RUN apk update && apk add --no-cache \
     libpng-dev vips-dev git
 
 COPY package*.json ./
-RUN npm install --production
+RUN npm install
 
 COPY . .
 RUN npm run build
