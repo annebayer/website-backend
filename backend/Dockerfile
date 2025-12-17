@@ -8,7 +8,7 @@ RUN apk update && apk add --no-cache \
     libpng-dev vips-dev git
 
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm install --production
 
 COPY . .
 RUN npm run build
@@ -20,12 +20,7 @@ WORKDIR /opt/app
 
 RUN apk add --no-cache vips-dev
 
-# Copy built files from builder
-COPY --from=builder /opt/app/node_modules ./node_modules
-COPY --from=builder /opt/app/dist ./dist
-COPY --from=builder /opt/app/public ./public
-COPY --from=builder /opt/app/package*.json ./
-COPY --from=builder /opt/app/.strapi ./.strapi
+COPY --from=builder /opt/app ./
 
 ENV NODE_ENV=production
 ENV HOST=0.0.0.0
