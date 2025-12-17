@@ -4,11 +4,6 @@ export default ({ env }) => ({
   app: {
     keys: env.array('APP_KEYS'),
   },
-  proxy: true,
+  proxy: env.bool('IS_PROXIED', true),
   url: env('PUBLIC_URL', ''),
-  admin: {
-    auth: {
-      secret: env('ADMIN_JWT_SECRET'),
-    },
-  },
 });
