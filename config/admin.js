@@ -1,24 +1,34 @@
-module.exports = ({ env }) => ({
-    auth: {
-        secret: env('ADMIN_JWT_SECRET'),
-        sessions: {
-            cookieOptions: {
-                secure: false,
-                httpOnly: true,
-                sameSite: 'lax',
+module.exports = ({ env }) => {
+    const secret = env('ADMIN_JWT_SECRET') || env('JWT_SECRET');
+
+    console.log('🔍 DEBUG - ADMIN_JWT_SECRET exists:', !!secret);
+
+    if (!secret) {
+        throw new Error('ADMIN_JWT_SECRET or JWT_SECRET must be set!');
+    }
+
+    return {
+        auth: {
+            secret: secret,
+            sessions: {
+                cookieOptions: {
+                    secure: false,
+                    httpOnly: true,
+                    sameSite: 'lax',
+                },
             },
         },
-    },
-    apiToken: {
-        salt: env('API_TOKEN_SALT'),
-    },
-    transfer: {
-        token: {
-            salt: env('TRANSFER_TOKEN_SALT'),
+        apiToken: {
+            salt: env('API_TOKEN_SALT'),
         },
-    },
-    flags: {
-        nps: env.bool('FLAG_NPS', true),
-        promoteEE: env.bool('FLAG_PROMOTE_EE', true),
-    },
-});
+        transfer: {
+            token: {
+                salt: env('TRANSFER_TOKEN_SALT'),
+            },
+        },
+        flags: {
+            nps: env.bool('FLAG_NPS', true),
+            promoteEE: env.bool('FLAG_PROMOTE_EE', true),
+        },
+    };
+};
