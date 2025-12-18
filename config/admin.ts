@@ -15,6 +15,11 @@ export default ({ env }) => ({
     promoteEE: env.bool('FLAG_PROMOTE_EE', true),
   },
   cookies: {
-    secure: env.bool('ADMIN_COOKIE_SECURE', false),
+    secure: false,
+    sameSite: 'lax',
+    httpOnly: true,
+  },
+  ratelimit: {
+    enabled: false,
   },
 });

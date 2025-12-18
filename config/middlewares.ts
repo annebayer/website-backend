@@ -29,16 +29,7 @@ export default [
   'strapi::poweredBy',
   'strapi::query',
   'strapi::body',
-  {
-    name: 'strapi::session',
-    config: {
-      cookie: {
-        secure: false,
-        httpOnly: true,
-        sameSite: 'lax',
-      },
-    },
-  },
+  'strapi::session',
   'strapi::favicon',
   'strapi::public',
 ];
