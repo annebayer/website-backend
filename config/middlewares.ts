@@ -14,11 +14,13 @@ export default [
             'blob:',
             'dl.airtable.com',
             'strapi.io',
+            'https:',
           ],
           'media-src': [
             "'self'",
             'data:',
             'blob:',
+            'https:',
           ],
           upgradeInsecureRequests: null,
         },
@@ -33,7 +35,7 @@ export default [
     name: 'strapi::session',
     config: {
       cookie: {
-        secure: false,
+        secure: process.env.NODE_ENV === 'production',
       },
     },
   },
