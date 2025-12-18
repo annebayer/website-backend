@@ -13,8 +13,10 @@ RUN npm ci
 COPY . .
 RUN rm -rf .cache dist build
 
-# Baue mit leerer PUBLIC_URL - wird zur Runtime gesetzt
-ENV PUBLIC_URL=""
+ARG RAILWAY_PUBLIC_DOMAIN
+ARG RAILWAY_STATIC_URL
+ENV PUBLIC_URL=https://${RAILWAY_STATIC_URL}
+
 RUN npm run build
 
 # Production Stage
