@@ -7,15 +7,19 @@ RUN apk add --no-cache \
     libpng-dev vips-dev git
 
 COPY package*.json ./
-RUN npm ci --only=production
-
-RUN npm install --save-dev @strapi/admin @strapi/strapi vite
+RUN npm ci
 
 COPY . .
+
 RUN rm -rf .cache dist build
 
 ENV NODE_ENV=production
 
 EXPOSE 1337
 
-CMD ["sh", "-c", "npm run build && npm run start"]
+RUN echo '#!/bin/sh' > /opt/app/start.sh && \
+    echo 'npm run build' >> /opt/app/start.sh && \
+    echo 'npm run start' >> /opt/app/start.sh && \
+    chmod +x /opt/app/start.sh
+
+CMD ["/opt/app/start.sh"]
