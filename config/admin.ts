@@ -19,7 +19,4 @@ export default ({ env }) => ({
     sameSite: 'lax',
     httpOnly: true,
   },
-  ratelimit: {
-    enabled: false,
-  },
 });

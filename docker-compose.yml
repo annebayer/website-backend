@@ -16,8 +16,13 @@ services:
       APP_KEYS: ${APP_KEYS}
       API_TOKEN_SALT: ${API_TOKEN_SALT}
       TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT}
+      IS_PROXIED: ${IS_PROXIED}
+      ADMIN_COOKIE_SECURE: ${ADMIN_COOKIE_SECURE}
+      PUBLIC_URL: ${PUBLIC_URL}
+      HOST: ${HOST}
+      PORT: ${PORT}
     volumes:
-      - strapi-uploads:/opt/app/public/uploads  # Uploads persistent
+      - strapi-uploads:/opt/app/public/uploads
     ports:
       - '1337:1337'
 
