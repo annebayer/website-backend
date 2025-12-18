@@ -10,6 +10,15 @@ RUN apk update && apk add --no-cache \
 COPY package*.json ./
 RUN npm ci
 
+COPY . .
+RUN rm -rf .cache dist build
+
+ARG RAILWAY_PUBLIC_DOMAIN
+ARG RAILWAY_STATIC_URL
+ENV PUBLIC_URL=https://${RAILWAY_STATIC_URL}
+
+RUN npm run build
+
 # Production Stage
 FROM node:20-alpine
 
@@ -17,11 +26,10 @@ WORKDIR /opt/app
 
 RUN apk add --no-cache vips-dev
 
-COPY --from=builder /opt/app/node_modules ./node_modules
-COPY . .
+COPY --from=builder /opt/app ./
 
 ENV NODE_ENV=production
 
 EXPOSE 1337
 
-CMD ["sh", "-c", "npm run build && npm run start"]
+CMD ["npm", "run", "start"]
