@@ -10,6 +10,15 @@ RUN apk update && apk add --no-cache \
 COPY package*.json ./
 RUN npm ci
 
+COPY . .
+RUN rm -rf .cache dist build
+
+ENV NODE_OPTIONS="--max-old-space-size=2048"
+ENV NODE_ENV=production
+ENV PUBLIC_URL=https://website-backend-production-d0f9.up.railway.app
+
+RUN npm run build
+
 # Production Stage
 FROM node:20-alpine
 
@@ -17,11 +26,10 @@ WORKDIR /opt/app
 
 RUN apk add --no-cache vips-dev
 
-COPY --from=builder /opt/app/node_modules ./node_modules
-COPY . .
+COPY --from=builder /opt/app ./
 
 ENV NODE_ENV=production
 
 EXPOSE 1337
 
-CMD ["npm", "run", "start:production"]
+CMD ["npm", "run", "start"]
