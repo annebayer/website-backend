@@ -6,12 +6,14 @@ export default ({ env }) => ({
                 secure: false,
                 httpOnly: true,
                 sameSite: 'lax',
+                domain: undefined,
             },
             refreshToken: {
                 cookieOptions: {
                     secure: false,
                     httpOnly: true,
                     sameSite: 'lax',
+                    domain: undefined,
                 },
             },
         },
