@@ -11,7 +11,8 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
-RUN rm -rf .cache dist
+RUN rm -rf .cache dist build
+
 RUN npm run build
 
 # Production Stage
@@ -22,6 +23,8 @@ WORKDIR /opt/app
 RUN apk add --no-cache vips-dev
 
 COPY --from=builder /opt/app ./
+
+ENV NODE_ENV=production
 
 EXPOSE 1337
 
