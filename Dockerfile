@@ -11,6 +11,7 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
+RUN rm -rf .cache dist
 RUN npm run build
 
 # Production Stage
