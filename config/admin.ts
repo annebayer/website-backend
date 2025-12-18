@@ -3,13 +3,13 @@ export default ({ env }) => ({
         secret: env('ADMIN_JWT_SECRET'),
         sessions: {
             cookieOptions: {
-                secure: env.bool('ADMIN_COOKIE_SECURE', false),
+                secure: false,
                 httpOnly: true,
                 sameSite: 'lax',
             },
             refreshToken: {
                 cookieOptions: {
-                    secure: env.bool('ADMIN_COOKIE_SECURE', false),
+                    secure: false,
                     httpOnly: true,
                     sameSite: 'lax',
                 },

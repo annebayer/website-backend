@@ -6,4 +6,7 @@ export default ({ env }) => ({
     },
     proxy: true,
     url: env('PUBLIC_URL', ''),
+    server: {
+        proxy: true,
+    },
 });
