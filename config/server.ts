@@ -7,5 +7,4 @@ export default ({ env }) => ({
     proxy: {
         koa: true,
     },
-    url: env('PUBLIC_URL', ''),
 });

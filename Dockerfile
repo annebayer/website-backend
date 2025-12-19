@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:20-alpine AS builder
 
 WORKDIR /opt/app
 
@@ -13,7 +13,6 @@ RUN apk add --no-cache \
     git
 
 COPY package*.json ./
-
 RUN npm ci
 
 COPY . .
@@ -21,7 +20,18 @@ COPY . .
 RUN rm -rf .cache dist build
 
 ENV NODE_ENV=production
+RUN npm run build
+
+FROM node:20-alpine
+
+WORKDIR /opt/app
+
+RUN apk add --no-cache vips-dev
+
+COPY --from=builder /opt/app ./
+
+ENV NODE_ENV=production
 
 EXPOSE 1337
 
-CMD ["sh", "-c", "npm run build && npm run start"]
+CMD ["npm", "run", "start"]
