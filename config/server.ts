@@ -7,5 +7,5 @@ export default ({ env }) => ({
     proxy: {
         koa: true,
     },
-    url: env('PUBLIC_URL', ''),
+    url: env('PUBLIC_URL', 'https://website-backend-production-d0f9.up.railway.app'),
 });
