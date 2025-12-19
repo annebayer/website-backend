@@ -12,6 +12,9 @@ RUN npm ci
 
 COPY . .
 
+# Wichtig: NICHT hier builden, sondern im Production Stage
+# oder mit Platzhalter-Variablen
+
 # Production Stage
 FROM node:20-alpine
 
@@ -26,6 +29,7 @@ COPY . .
 
 ENV NODE_ENV=production
 
+# Baue das Admin-Panel zur Runtime mit den richtigen URLs
 RUN npm run build
 
 EXPOSE 1337

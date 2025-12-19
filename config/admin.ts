@@ -1,22 +1,6 @@
 export default ({ env }) => ({
     auth: {
         secret: env('ADMIN_JWT_SECRET'),
-        sessions: {
-            cookieOptions: {
-                secure: false,
-                httpOnly: true,
-                sameSite: 'lax',
-                domain: undefined,
-            },
-            refreshToken: {
-                cookieOptions: {
-                    secure: false,
-                    httpOnly: true,
-                    sameSite: 'lax',
-                    domain: undefined,
-                },
-            },
-        },
     },
     apiToken: {
         salt: env('API_TOKEN_SALT'),
