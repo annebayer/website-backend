@@ -18,12 +18,10 @@ RUN npm ci
 
 COPY . .
 
+RUN rm -rf .cache dist build
+
 ENV NODE_ENV=production
-
-RUN npm run build
-
-RUN npm prune --production
 
 EXPOSE 1337
 
-CMD ["npm", "run", "start"]
+CMD ["sh", "-c", "npm run build && npm run start"]
