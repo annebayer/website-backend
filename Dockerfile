@@ -1,34 +1,30 @@
-FROM node:20-alpine AS builder
+FROM node:18-alpine AS build
 
 WORKDIR /opt/app
 
-RUN apk add --no-cache \
-    build-base \
-    gcc \
-    autoconf \
-    automake \
-    zlib-dev \
-    libpng-dev \
-    vips-dev \
-    git
-
 COPY package*.json ./
+
 RUN npm ci
 
 COPY . .
 
-RUN rm -rf .cache dist build
-
 ENV NODE_ENV=production
 RUN npm run build
 
-FROM node:20-alpine
+FROM node:18-alpine
 
 WORKDIR /opt/app
 
-RUN apk add --no-cache vips-dev
+COPY package*.json ./
 
-COPY --from=builder /opt/app ./
+RUN npm ci --only=production
+
+COPY --from=build /opt/app/dist ./dist
+COPY --from=build /opt/app/build ./build
+COPY --from=build /opt/app/public ./public
+COPY --from=build /opt/app/.strapi ./.strapi
+
+COPY . .
 
 ENV NODE_ENV=production
 
