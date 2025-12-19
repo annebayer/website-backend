@@ -11,11 +11,6 @@ COPY package*.json ./
 RUN npm ci
 
 COPY . .
-RUN rm -rf .cache dist build
-
-# Baue mit leerer PUBLIC_URL - wird zur Runtime gesetzt
-ENV PUBLIC_URL=""
-RUN npm run build
 
 # Production Stage
 FROM node:20-alpine
@@ -24,9 +19,14 @@ WORKDIR /opt/app
 
 RUN apk add --no-cache vips-dev
 
-COPY --from=builder /opt/app ./
+COPY --from=builder /opt/app/node_modules ./node_modules
+COPY --from=builder /opt/app/package*.json ./
+COPY --from=builder /opt/app/.env.example ./.env.example
+COPY . .
 
 ENV NODE_ENV=production
+
+RUN npm run build
 
 EXPOSE 1337
 
