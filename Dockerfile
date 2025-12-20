@@ -7,15 +7,16 @@ RUN apk update && apk add --no-cache \
     libpng-dev vips-dev git
 
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm ci
 
 COPY . .
+
+RUN rm -rf .cache dist build
 
 ENV NODE_ENV=production
 
 RUN npm run build
 
-# Production Stage
 FROM node:20-alpine
 
 WORKDIR /opt/app
