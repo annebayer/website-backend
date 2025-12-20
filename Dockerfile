@@ -1,4 +1,3 @@
-# Build Stage
 FROM node:20-alpine AS builder
 
 WORKDIR /opt/app
@@ -8,14 +7,11 @@ RUN apk update && apk add --no-cache \
     libpng-dev vips-dev git
 
 COPY package*.json ./
-RUN npm ci
+RUN npm ci --only=production
 
 COPY . .
-RUN rm -rf .cache dist build
 
-ARG RAILWAY_PUBLIC_DOMAIN
-ARG PUBLIC_URL
-ARG ADMIN_URL
+ENV NODE_ENV=production
 
 RUN npm run build
 

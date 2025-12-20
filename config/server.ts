@@ -7,4 +7,7 @@ export default ({ env }) => ({
     proxy: {
         koa: true,
     },
+    webhooks: {
+        populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false),
+    },
 });
