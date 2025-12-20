@@ -13,9 +13,9 @@ RUN npm ci
 COPY . .
 RUN rm -rf .cache dist build
 
-ENV RAILWAY_PUBLIC_DOMAIN=website-backend-production-d0f9.up.railway.app
-ENV PUBLIC_URL=https://website-backend-production-d0f9.up.railway.app
-ENV ADMIN_URL=https://website-backend-production-d0f9.up.railway.app/admin
+ARG RAILWAY_PUBLIC_DOMAIN
+ARG PUBLIC_URL
+ARG ADMIN_URL
 
 RUN npm run build
 
