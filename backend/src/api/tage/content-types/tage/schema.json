@@ -16,6 +16,11 @@
       "required": true,
       "unique": true
     },
+    "name": {
+      "type": "string",
+      "required": false,
+      "unique": true
+    },
     "dateFrom": {
       "type": "date",
       "required": true
