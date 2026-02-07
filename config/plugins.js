@@ -25,5 +25,7 @@ module.exports = ({ env }) => ({
       },
     },
     responsiveDimensions: false,
+    publicAccess: true,
+    baseUrl: env("PUBLIC_MEDIA_URL"),
   },
 });
