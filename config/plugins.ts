@@ -27,3 +27,9 @@ export default ({ env }) => ({
     },
   },
 });
+
+console.log('UPLOAD PROVIDER:', {
+  endpoint: env('R2_ENDPOINT'),
+  bucket: env('R2_BUCKET'),
+});
+
