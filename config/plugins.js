@@ -14,16 +14,21 @@ module.exports = ({ env }) => ({
   },
 
   upload: {
-    provider: "aws-s3",
-    providerOptions: {
-      accessKeyId: env("R2_ACCESS_KEY_ID"),
-      secretAccessKey: env("R2_SECRET_ACCESS_KEY"),
-      endpoint: env("R2_ENDPOINT"),
-      region: "auto",
-      params: {
-        Bucket: env("R2_BUCKET"),
+    config: {
+      provider: 'aws-s3',
+      providerOptions: {
+        s3Options: {
+          credentials: {
+            accessKeyId: env('R2_ACCESS_KEY_ID'),
+            secretAccessKey: env('R2_SECRET_ACCESS_KEY'),
+          },
+          region: 'auto',
+          endpoint: env('R2_ENDPOINT'),
+          params: {
+            Bucket: env('R2_BUCKET'),
+          },
+        },
       },
     },
-    responsiveDimensions: false,
   },
 });
