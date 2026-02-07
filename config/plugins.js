@@ -17,17 +17,18 @@ module.exports = ({ env }) => ({
     config: {
       provider: 'aws-s3',
       providerOptions: {
-        s3Options: {
-          credentials: {
-            accessKeyId: env('R2_ACCESS_KEY_ID'),
-            secretAccessKey: env('R2_SECRET_ACCESS_KEY'),
-          },
-          region: 'auto',
-          endpoint: env('R2_ENDPOINT'),
-          params: {
-            Bucket: env('R2_BUCKET'),
-          },
+        accessKeyId: env('R2_ACCESS_KEY_ID'),
+        secretAccessKey: env('R2_SECRET_ACCESS_KEY'),
+        region: env('R2_REGION', 'auto'), // R2 nutzt oft 'auto'
+        params: {
+          Bucket: env('R2_BUCKET'),
         },
+        endpoint: env('R2_ENDPOINT'),
+        s3ForcePathStyle: true,
+      },
+      actionOptions: {
+        upload: {},
+        delete: {},
       },
     },
   },
