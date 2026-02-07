@@ -16,7 +16,7 @@
     "upgrade:dry": "npx @strapi/upgrade latest --dry"
   },
   "dependencies": {
-    "@strapi/provider-upload-aws-s3": "^5.0.0",
+    "@strapi/provider-cloudflare-r2": "5.33.0",
     "@strapi/plugin-cloud": "5.33.0",
     "@strapi/plugin-graphql": "^5.29.0",
     "@strapi/plugin-users-permissions": "5.33.0",
