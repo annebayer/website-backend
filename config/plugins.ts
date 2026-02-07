@@ -22,11 +22,15 @@ export default ({ env }) => {
     upload: {
       provider: 'aws-s3',
       providerOptions: {
-        accessKeyId: env('R2_ACCESS_KEY_ID'),
-        secretAccessKey: env('R2_SECRET_ACCESS_KEY'),
-        endpoint: env('R2_ENDPOINT'),
-        region: 'auto',
-        forcePathStyle: true,
+        s3Options: {
+          credentials: {
+            accessKeyId: env('R2_ACCESS_KEY_ID'),
+            secretAccessKey: env('R2_SECRET_ACCESS_KEY'),
+          },
+          endpoint: env('R2_ENDPOINT'),
+          region: 'auto',
+          forcePathStyle: true,
+        },
         params: {
           Bucket: env('R2_BUCKET'),
         },
