@@ -20,12 +20,10 @@ module.exports = ({ env }) => ({
       secretAccessKey: env("R2_SECRET_ACCESS_KEY"),
       endpoint: env("R2_ENDPOINT"),
       region: "auto",
+      forcePathStyle: true,
       params: {
         Bucket: env("R2_BUCKET"),
       },
     },
-    responsiveDimensions: false,
-    publicAccess: true,
-    baseUrl: env("PUBLIC_MEDIA_URL"),
   },
 });
