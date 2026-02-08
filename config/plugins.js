@@ -45,6 +45,7 @@ module.exports = ({ env }) => ({
         uploadStream: {},
         delete: {},
       },
+      publicUrl: env('CF_PUBLIC_ACCESS_URL'),
     },
   },
 });
